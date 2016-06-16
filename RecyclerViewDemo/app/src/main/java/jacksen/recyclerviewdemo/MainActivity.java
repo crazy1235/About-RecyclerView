@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
         //
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+//        linearLayoutManager.setRecycleChildrenOnDetach(true);
+//        RecyclerView.RecycledViewPool pool = recyclerView.getRecycledViewPool();
+
 
         recyclerView.setLayoutManager(linearLayoutManager);
 
