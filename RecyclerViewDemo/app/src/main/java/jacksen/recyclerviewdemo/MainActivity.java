@@ -2,8 +2,10 @@ package jacksen.recyclerviewdemo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -14,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private MainAdapter adapter;
+
+    private ItemTouchHelper itemTouchHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +48,11 @@ public class MainActivity extends AppCompatActivity {
 //        RecyclerView.RecycledViewPool pool = recyclerView.getRecycledViewPool();
 
 
+        itemTouchHelper = new ItemTouchHelper(new MyCallBack());
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
         recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
         adapter = new MainAdapter(this);

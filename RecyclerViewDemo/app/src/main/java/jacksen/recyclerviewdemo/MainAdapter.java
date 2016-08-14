@@ -3,6 +3,7 @@ package jacksen.recyclerviewdemo;
 import android.content.Context;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchUIUtil;
 import android.support.v7.widget.util.SortedListAdapterCallback;
 import android.view.LayoutInflater;
 import android.view.View;
