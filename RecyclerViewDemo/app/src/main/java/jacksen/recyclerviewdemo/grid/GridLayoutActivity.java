@@ -6,6 +6,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +63,43 @@ public class GridLayoutActivity extends AppCompatActivity {
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_list, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_horizontal:
+                recyclerView.setLayoutManager(new GridLayoutManager(this, 3, GridLayoutManager.HORIZONTAL, false));
+                break;
+            case R.id.item_vertical:
+                recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+                break;
+            case R.id.item_add_first:
+                adapter.addItem(0, "first item");
+                recyclerView.smoothScrollToPosition(0);
+                break;
+            case R.id.item_add_last:
+                adapter.addItem(adapter.getItemCount(), "last item");
+                recyclerView.smoothScrollToPosition(adapter.getItemCount());
+                break;
+            case R.id.item_remove_first:
+                adapter.removeItem(0);
+                recyclerView.smoothScrollToPosition(0);
+                break;
+            case R.id.item_remove_last:
+                adapter.removeItem(adapter.getItemCount() - 1);
+                recyclerView.smoothScrollToPosition(adapter.getItemCount());
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onDestroy() {

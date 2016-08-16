@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import jacksen.recyclerviewdemo.grid.GridLayoutActivity;
 import jacksen.recyclerviewdemo.list.ListLayoutActivity;
+import jacksen.recyclerviewdemo.stagger.StaggerLayoutActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         staggerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(MainActivity.this, StaggerLayoutActivity.class));
             }
         });
 

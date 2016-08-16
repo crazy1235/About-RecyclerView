@@ -74,6 +74,40 @@ public class GridLayoutAdapter extends RecyclerView.Adapter<GridLayoutAdapter.It
         data.remove(targetPos);
     }
 
+    /**
+     * 向指定位置添加元素
+     *
+     * @param position
+     * @param value
+     */
+    public void addItem(int position, String value) {
+        if (position > data.size()) {
+            position = data.size();
+        }
+        if (position < 0) {
+            position = 0;
+        }
+        data.add(position, value);
+
+        // 使用notifyItemInserted / notifyItemRemoved 有动画效果
+        // 使用nofityDataSetChanged 没有动画效果
+        notifyItemInserted(position);
+    }
+
+
+    /**
+     * @param position
+     */
+    public String removeItem(int position) {
+        if (position < 0 && position > data.size() - 1) {
+            return null;
+        }
+        String value = data.remove(position);
+        notifyItemRemoved(position);
+        return value;
+    }
+
+
     static class ItemViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textView;
