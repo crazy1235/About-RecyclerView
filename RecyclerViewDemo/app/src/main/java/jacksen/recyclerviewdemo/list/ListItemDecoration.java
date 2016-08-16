@@ -1,4 +1,4 @@
-package jacksen.recyclerviewdemo.common;
+package jacksen.recyclerviewdemo.list;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -15,7 +15,7 @@ import jacksen.recyclerviewdemo.R;
  * Created by ys on 2016/8/15.
  */
 
-public class MyItemDecoration extends RecyclerView.ItemDecoration {
+public class ListItemDecoration extends RecyclerView.ItemDecoration {
 
     private Drawable drawable;
 
@@ -24,7 +24,7 @@ public class MyItemDecoration extends RecyclerView.ItemDecoration {
     private int orientation = DEFAULT_ORIENTATION;
 
 
-    public MyItemDecoration(Context context, int orientation) {
+    public ListItemDecoration(Context context, int orientation) {
         if (orientation == LinearLayoutManager.VERTICAL || orientation == LinearLayoutManager.HORIZONTAL) {
             this.orientation = orientation;
         } else {
@@ -50,7 +50,21 @@ public class MyItemDecoration extends RecyclerView.ItemDecoration {
      * @param parent
      */
     private void onDrawHorizontal(Canvas c, RecyclerView parent) {
+        int top = parent.getPaddingTop();
+        int bottom = parent.getHeight() - parent.getPaddingBottom();
 
+        int left;
+        int right;
+
+        int childCount = parent.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View child = parent.getChildAt(i);
+            RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
+            left = child.getRight() + params.rightMargin;
+            right = left + drawable.getIntrinsicWidth();
+            drawable.setBounds(left, top, right, bottom);
+            drawable.draw(c);
+        }
     }
 
 

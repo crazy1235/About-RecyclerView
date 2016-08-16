@@ -38,7 +38,7 @@ public class GridLayoutActivity extends AppCompatActivity {
         // 设置item动画
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         // 设置item分割view
-//        recyclerView.addItemDecoration(new MyItemDecoration(this, LinearLayoutManager.VERTICAL));
+        recyclerView.addItemDecoration(new GridItemDecoration(this));
         // ???
         recyclerView.setHasFixedSize(true);
 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/item_horizontal"
+        android:orderInCategory="100"
+        android:title="horizontal"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/item_vertical"
+        android:orderInCategory="100"
+        android:title="vertical"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_add_first"
+        android:orderInCategory="100"
+        android:title="头部添加item"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/item_add_last"
+        android:orderInCategory="100"
+        android:title="尾部添加item"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/item_remove_first"
+        android:orderInCategory="100"
+        android:title="移除头部item"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/item_remove_last"
+        android:orderInCategory="100"
+        android:title="移除尾部item"
+        app:showAsAction="never" />
+
+
+</menu>

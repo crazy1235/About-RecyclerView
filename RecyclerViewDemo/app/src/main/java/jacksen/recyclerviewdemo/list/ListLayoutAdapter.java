@@ -46,10 +46,34 @@ public class ListLayoutAdapter extends RecyclerView.Adapter<ListLayoutAdapter.It
     }
 
     @Override
-    public void onBindViewHolder(ItemViewHolder holder, int position) {
+    public void onBindViewHolder(ItemViewHolder holder, final int position) {
         Log.d("ListLayoutAdapter", "onBindViewHolder");
         holder.textView.setText(data.get(position));
         Log.d("ListLayoutAdapter", holder.toString());
+
+        // adapter中设置item点击事件监听
+        if (itemListener != null) {
+            /**
+             * 这里加了判断，itemViewHolder.itemView.hasOnClickListeners()
+             * 目的是减少对象的创建，如果已经为view设置了click监听事件,就不用重复设置了
+             * 不然每次调用onBindViewHolder方法，都会创建两个监听事件对象，增加了内存的开销
+             */
+            if (!holder.itemView.hasOnClickListeners()) {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        itemListener.onItemClick(view, position);
+                    }
+                });
+                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        itemListener.onItemLongClick(view, position);
+                        return true;
+                    }
+                });
+            }
+        }
     }
 
     @Override
@@ -83,6 +107,40 @@ public class ListLayoutAdapter extends RecyclerView.Adapter<ListLayoutAdapter.It
         notifyItemRemoved(targetPos);
         data.remove(targetPos);
     }
+
+    /**
+     * 向指定位置添加元素
+     *
+     * @param position
+     * @param value
+     */
+    public void addItem(int position, String value) {
+        if (position > data.size()) {
+            position = data.size();
+        }
+        if (position < 0) {
+            position = 0;
+        }
+        data.add(position, value);
+
+        // 使用notifyItemInserted / notifyItemRemoved 有动画效果
+        // 使用nofityDataSetChanged 没有动画效果
+        notifyItemInserted(position);
+    }
+
+
+    /**
+     * @param position
+     */
+    public String removeItem(int position) {
+        if (position < 0 && position > data.size() - 1) {
+            return null;
+        }
+        String value = data.remove(position);
+        notifyItemRemoved(position);
+        return value;
+    }
+
 
     /**
      *
