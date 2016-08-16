@@ -14,8 +14,8 @@ import java.util.List;
 
 import jacksen.recyclerviewdemo.R;
 import jacksen.recyclerviewdemo.common.ItemListener;
+import jacksen.recyclerviewdemo.common.MyCallBack;
 import jacksen.recyclerviewdemo.common.MyItemDecoration;
-import jacksen.recyclerviewdemo.common.MySimpleCallback;
 
 /**
  * LinearLayoutManager
@@ -67,11 +67,18 @@ public class ListLayoutActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);
 
-        MySimpleCallback callback = new MySimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, ItemTouchHelper.LEFT);
+        /*MySimpleCallback callback = new MySimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, ItemTouchHelper.LEFT);
+
+        callback.setCallbackListener(adapter);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);*/
+
+        MyCallBack callback = new MyCallBack();
 
         callback.setCallbackListener(adapter);
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
+
 
         // 绑定
         itemTouchHelper.attachToRecyclerView(recyclerView);

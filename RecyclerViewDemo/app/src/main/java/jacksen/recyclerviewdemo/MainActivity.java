@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import jacksen.recyclerviewdemo.grid.GridLayoutActivity;
 import jacksen.recyclerviewdemo.list.ListLayoutActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         gridBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(MainActivity.this, GridLayoutActivity.class));
             }
         });
 
