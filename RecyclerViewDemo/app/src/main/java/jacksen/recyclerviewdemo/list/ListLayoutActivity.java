@@ -6,6 +6,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import java.util.List;
 
 import jacksen.recyclerviewdemo.R;
 import jacksen.recyclerviewdemo.common.ItemListener;
+import jacksen.recyclerviewdemo.common.ItemOnTouchListener;
 import jacksen.recyclerviewdemo.common.MyCallBack;
 import jacksen.recyclerviewdemo.common.MyItemDecoration;
 
@@ -82,6 +84,22 @@ public class ListLayoutActivity extends AppCompatActivity {
 
         // 绑定
         itemTouchHelper.attachToRecyclerView(recyclerView);
+
+        // 添加点击事件
+        recyclerView.addOnItemTouchListener(new ItemOnTouchListener(recyclerView) {
+            @Override
+            public void onItemClick(RecyclerView.ViewHolder viewHolder) {
+                super.onItemClick(viewHolder);
+                Toast.makeText(ListLayoutActivity.this, viewHolder.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onItemLongClick(RecyclerView.ViewHolder viewHolder) {
+                super.onItemLongClick(viewHolder);
+                Log.d("ListLayoutActivity", viewHolder.getOldPosition() + "--" + viewHolder.getLayoutPosition() + "--" + viewHolder.getAdapterPosition()
+                        + "--" + viewHolder.getItemId() + "--" + viewHolder.getItemViewType());
+            }
+        });
 
     }
 }

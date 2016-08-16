@@ -6,6 +6,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 
 /**
  * Created by Admin on 2016/8/14.
@@ -40,6 +41,7 @@ public class MyCallBack extends ItemTouchHelper.Callback {
 
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+        Log.d("MyCallBack", "getMovementFlags");
         if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
             int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
             int swipeFlags = 0;
@@ -55,6 +57,7 @@ public class MyCallBack extends ItemTouchHelper.Callback {
     // 拖动时，通知adapter调整数据
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+        Log.d("MyCallBack", "onMove");
         callbackListener.onMove(recyclerView, viewHolder, target);
         return true;
     }
@@ -62,13 +65,16 @@ public class MyCallBack extends ItemTouchHelper.Callback {
     // 滑动删除相应操作，主要用来通知adapter移除相关item
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+        Log.d("MyCallBack", "onSwiped");
         callbackListener.onSwiped(viewHolder, direction);
     }
 
     @Override
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+        Log.d("MyCallBack", "onChildDraw -- dX -- dY -- actionState -- isCurrentlyActive>>>" + dX + "  " + dY + "  " + actionState + "  " + isCurrentlyActive);
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {// 滑动的是改变item的透明度
             float alpha = 1 - Math.abs(dX) / viewHolder.itemView.getWidth();
+            Log.d("MyCallBack", "alpha:" + alpha);
             viewHolder.itemView.setAlpha(alpha);
             viewHolder.itemView.setTranslationX(dX);
         } else {
@@ -79,21 +85,27 @@ public class MyCallBack extends ItemTouchHelper.Callback {
 
     @Override
     public void onChildDrawOver(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+        Log.d("MyCallBack", "onChildDrawOver -- dX -- dY -- actionState -- isCurrentlyActive>>>" + dX + "  " + dY + "  " + actionState + "  " + isCurrentlyActive);
         super.onChildDrawOver(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
     }
 
+    // 重写此方法可以添加一些选中的动画逻辑
     @Override
     public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
         super.onSelectedChanged(viewHolder, actionState);
+        Log.d("MyCallBack", "onSelectedChanged -- actionState:" + actionState);
         if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
             viewHolder.itemView.setBackgroundColor(dragBgColor);
         }
     }
 
+    // 动画结束时，重写此方法恢复item的初始状态
     @Override
     public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         super.clearView(recyclerView, viewHolder);
-        viewHolder.itemView.setAlpha(1.0f);
-        viewHolder.itemView.setBackgroundColor(Color.GREEN);
+        Log.d("MyCallBack", "clearView");
+//        viewHolder.itemView.setAlpha(1.0f);
+//        viewHolder.itemView.setBackgroundColor(Color.GREEN);
+
     }
 }

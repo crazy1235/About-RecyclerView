@@ -54,7 +54,7 @@ public class GridLayoutAdapter extends RecyclerView.Adapter<GridLayoutAdapter.It
         if (fromPos == toPos) {
             return;
         }
-        if (fromPos < toPos) {
+        if (fromPos < toPos) { // 注意对data进行重新排序
             for (int i = fromPos; i < toPos; i++) {
                 Collections.swap(data, i, i + 1);
             }
@@ -64,6 +64,7 @@ public class GridLayoutAdapter extends RecyclerView.Adapter<GridLayoutAdapter.It
             }
         }
         notifyItemMoved(fromPos, toPos);
+
     }
 
     @Override
