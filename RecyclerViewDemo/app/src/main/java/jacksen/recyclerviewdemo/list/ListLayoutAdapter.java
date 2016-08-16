@@ -1,7 +1,6 @@
 package jacksen.recyclerviewdemo.list;
 
 import android.content.Context;
-import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import jacksen.recyclerviewdemo.R;
+import jacksen.recyclerviewdemo.common.CallbackListener;
 import jacksen.recyclerviewdemo.common.ItemListener;
 
 /**
@@ -20,7 +20,7 @@ import jacksen.recyclerviewdemo.common.ItemListener;
  * Created by ys on 2016/8/15.
  */
 
-public class ListLayoutAdapter extends RecyclerView.Adapter<ListLayoutAdapter.ItemViewHolder> {
+public class ListLayoutAdapter extends RecyclerView.Adapter<ListLayoutAdapter.ItemViewHolder> implements CallbackListener {
 
     private List<String> data;
 
@@ -55,6 +55,20 @@ public class ListLayoutAdapter extends RecyclerView.Adapter<ListLayoutAdapter.It
     public int getItemCount() {
         Log.d("ListLayoutAdapter", "getItemCount");
         return data.size();
+    }
+
+    @Override
+    public void onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+        int fromPos = viewHolder.getAdapterPosition();
+        int toPos = target.getAdapterPosition();
+        notifyItemMoved(fromPos, toPos);
+    }
+
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+        int targetPos = viewHolder.getAdapterPosition();
+        notifyItemRemoved(targetPos);
+        data.remove(targetPos);
     }
 
     /**

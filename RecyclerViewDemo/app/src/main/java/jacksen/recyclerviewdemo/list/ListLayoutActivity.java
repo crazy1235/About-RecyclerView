@@ -1,11 +1,13 @@
 package jacksen.recyclerviewdemo.list;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +15,7 @@ import java.util.List;
 import jacksen.recyclerviewdemo.R;
 import jacksen.recyclerviewdemo.common.ItemListener;
 import jacksen.recyclerviewdemo.common.MyItemDecoration;
+import jacksen.recyclerviewdemo.common.MySimpleCallback;
 
 /**
  * LinearLayoutManager
@@ -40,6 +43,8 @@ public class ListLayoutActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         // 设置item分割view
         recyclerView.addItemDecoration(new MyItemDecoration(this, LinearLayoutManager.VERTICAL));
+        // ???
+        recyclerView.setHasFixedSize(true);
 
         data = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
@@ -50,17 +55,26 @@ public class ListLayoutActivity extends AppCompatActivity {
         adapter.setItemListener(new ItemListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                Toast.makeText(ListLayoutActivity.this, "第 " + position + " 个item被点击了", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onItemLongClick(View view, int position) {
-
+                Toast.makeText(ListLayoutActivity.this, "第 " + position + " 个item被长按了", Toast.LENGTH_SHORT).show();
             }
         });
 
 
         recyclerView.setAdapter(adapter);
+
+        MySimpleCallback callback = new MySimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, ItemTouchHelper.LEFT);
+
+        callback.setCallbackListener(adapter);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
+
+        // 绑定
+        itemTouchHelper.attachToRecyclerView(recyclerView);
 
     }
 }
