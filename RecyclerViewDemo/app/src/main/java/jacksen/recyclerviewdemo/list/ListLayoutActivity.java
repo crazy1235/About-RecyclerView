@@ -82,7 +82,6 @@ public class ListLayoutActivity extends AppCompatActivity {
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
 
-
         // 绑定
         itemTouchHelper.attachToRecyclerView(recyclerView);
 

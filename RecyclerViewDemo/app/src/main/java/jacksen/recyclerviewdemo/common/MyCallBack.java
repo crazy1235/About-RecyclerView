@@ -28,12 +28,14 @@ public class MyCallBack extends ItemTouchHelper.Callback {
     }
 
     // 是否可以滑动删除
+    // 返回true表示支持左右滑动
     @Override
     public boolean isItemViewSwipeEnabled() {
         return super.isItemViewSwipeEnabled();
     }
 
     // 是否可以长按拖动
+    // 返回true表示支持长按拖拽
     @Override
     public boolean isLongPressDragEnabled() {
         return super.isLongPressDragEnabled();
@@ -76,7 +78,7 @@ public class MyCallBack extends ItemTouchHelper.Callback {
             float alpha = 1 - Math.abs(dX) / viewHolder.itemView.getWidth();
             Log.d("MyCallBack", "alpha:" + alpha);
             viewHolder.itemView.setAlpha(alpha);
-            viewHolder.itemView.setTranslationX(dX);
+            viewHolder.itemView.setTranslationX(dX); // 设置X轴方向的偏移
         } else {
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
         }
