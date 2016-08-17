@@ -108,6 +108,6 @@ public class MyCallBack extends ItemTouchHelper.Callback {
         Log.d("MyCallBack", "clearView");
 //        viewHolder.itemView.setAlpha(1.0f);
 //        viewHolder.itemView.setBackgroundColor(Color.GREEN);
-
+        viewHolder.itemView.setBackgroundColor(Color.TRANSPARENT);
     }
 }

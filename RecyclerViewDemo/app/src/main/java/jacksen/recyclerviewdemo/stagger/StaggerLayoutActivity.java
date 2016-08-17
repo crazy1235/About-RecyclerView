@@ -19,7 +19,9 @@ import jacksen.recyclerviewdemo.common.ItemListener;
 import jacksen.recyclerviewdemo.common.MyCallBack;
 
 /**
+ * 问题：1. staggeredGridLayoutManager 设置分割线 的方法
  *
+ * @author ys
  */
 public class StaggerLayoutActivity extends AppCompatActivity {
 
