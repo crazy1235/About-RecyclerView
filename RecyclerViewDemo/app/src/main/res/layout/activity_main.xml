@@ -13,7 +13,7 @@
         android:id="@+id/linear_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Linear" />
+        android:text="@string/linear" />
 
 
     <Button
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Grid" />
+        android:text="@string/grid" />
 
 
     <Button
@@ -29,7 +29,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Stagger" />
+        android:text="@string/stagger" />
+
+    <Button
+        android:id="@+id/load_more_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/load_more" />
 
 
 </LinearLayout>

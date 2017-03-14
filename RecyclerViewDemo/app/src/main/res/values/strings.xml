@@ -3,4 +3,8 @@
 
 
     <string name="menu_add_item">Add Item</string>
+    <string name="load_more">LoadMore</string>
+    <string name="linear">LinearLayoutManager</string>
+    <string name="grid">GridLayoutManager</string>
+    <string name="stagger">StaggerLayoutManager</string>
 </resources>

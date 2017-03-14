@@ -14,7 +14,7 @@ import jacksen.recyclerviewdemo.stagger.StaggerLayoutActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button linearBtn, gridBtn, staggerBtn;
+    private Button linearBtn, gridBtn, staggerBtn, loadMoreBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         linearBtn = (Button) findViewById(R.id.linear_btn);
         gridBtn = (Button) findViewById(R.id.grid_btn);
         staggerBtn = (Button) findViewById(R.id.stagger_btn);
+        loadMoreBtn = (Button) findViewById(R.id.load_more_btn);
 
         linearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, StaggerLayoutActivity.class));
+            }
+        });
+
+        loadMoreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
