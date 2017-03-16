@@ -9,4 +9,9 @@
     <color name="color_item_normal">#52ce90</color>
     <color name="color_item_press">#34b574</color>
 
+    <color name="color_swipe_1">#34b574</color>
+    <color name="color_swipe_2">#e47129</color>
+    <color name="color_swipe_3">#3b0be9</color>
+    <color name="color_swipe_4">#df4a99</color>
+
 </resources>

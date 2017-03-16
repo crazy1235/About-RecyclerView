@@ -10,7 +10,10 @@ import android.widget.Button;
 
 import jacksen.recyclerviewdemo.grid.GridLayoutActivity;
 import jacksen.recyclerviewdemo.list.ListLayoutActivity;
+import jacksen.recyclerviewdemo.loadmore.SecondActivity;
 import jacksen.recyclerviewdemo.stagger.StaggerLayoutActivity;
+
+import static jacksen.recyclerviewdemo.R.id.load_more_btn;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         linearBtn = (Button) findViewById(R.id.linear_btn);
         gridBtn = (Button) findViewById(R.id.grid_btn);
         staggerBtn = (Button) findViewById(R.id.stagger_btn);
-        loadMoreBtn = (Button) findViewById(R.id.load_more_btn);
+        loadMoreBtn = (Button) findViewById(load_more_btn);
 
         linearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         loadMoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(MainActivity.this, SecondActivity.class));
             }
         });
 
