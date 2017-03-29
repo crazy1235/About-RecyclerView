@@ -7,4 +7,8 @@
     <string name="linear">LinearLayoutManager</string>
     <string name="grid">GridLayoutManager</string>
     <string name="stagger">StaggerLayoutManager</string>
+    <string name="empty_view">Show Empty View</string>
+
+    <string name="add">Add</string>
+    <string name="remove">remove</string>
 </resources>

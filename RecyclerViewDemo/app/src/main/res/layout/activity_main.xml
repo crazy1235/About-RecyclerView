@@ -38,5 +38,11 @@
         android:layout_marginTop="20dp"
         android:text="@string/load_more" />
 
+    <Button
+        android:id="@+id/show_empty_view_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/empty_view" />
 
 </LinearLayout>

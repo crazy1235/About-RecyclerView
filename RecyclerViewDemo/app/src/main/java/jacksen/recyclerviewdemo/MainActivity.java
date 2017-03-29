@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import jacksen.recyclerviewdemo.empty.EmptyViewActivity;
 import jacksen.recyclerviewdemo.grid.GridLayoutActivity;
 import jacksen.recyclerviewdemo.list.ListLayoutActivity;
 import jacksen.recyclerviewdemo.loadmore.SecondActivity;
@@ -17,7 +18,7 @@ import static jacksen.recyclerviewdemo.R.id.load_more_btn;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button linearBtn, gridBtn, staggerBtn, loadMoreBtn;
+    private Button linearBtn, gridBtn, staggerBtn, loadMoreBtn, showEmptyViewBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         gridBtn = (Button) findViewById(R.id.grid_btn);
         staggerBtn = (Button) findViewById(R.id.stagger_btn);
         loadMoreBtn = (Button) findViewById(load_more_btn);
+        showEmptyViewBtn = (Button) findViewById(R.id.show_empty_view_btn);
 
         linearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +57,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, SecondActivity.class));
+            }
+        });
+
+        showEmptyViewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, EmptyViewActivity.class));
             }
         });
 
