@@ -20,7 +20,7 @@
         <activity android:name=".slide.SlideDeleteActivity" />
         <activity android:name=".stagger.StaggerLayoutActivity" />
         <activity android:name=".loadmore.SecondActivity" />
-        <activity android:name=".empty.EmptyViewActivity"></activity>
+        <activity android:name=".empty.EmptyViewActivity" />
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package jacksen.recyclerviewdemo.common;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +19,8 @@ public class MyCallBack extends ItemTouchHelper.Callback {
     private CallbackListener callbackListener;
 
     private int dragBgColor = Color.parseColor("#f5f5f5");
+
+    private Drawable originalBgDrawable;
 
     public MyCallBack() {
 
@@ -95,6 +98,9 @@ public class MyCallBack extends ItemTouchHelper.Callback {
     @Override
     public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
         super.onSelectedChanged(viewHolder, actionState);
+        if (viewHolder != null && viewHolder.itemView != null) {
+            originalBgDrawable = viewHolder.itemView.getBackground();
+        }
         Log.d("MyCallBack", "onSelectedChanged -- actionState:" + actionState);
         if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
             viewHolder.itemView.setBackgroundColor(dragBgColor);
@@ -108,6 +114,8 @@ public class MyCallBack extends ItemTouchHelper.Callback {
         Log.d("MyCallBack", "clearView");
 //        viewHolder.itemView.setAlpha(1.0f);
 //        viewHolder.itemView.setBackgroundColor(Color.GREEN);
-        viewHolder.itemView.setBackgroundColor(Color.TRANSPARENT);
+        if (originalBgDrawable != null) {
+            viewHolder.itemView.setBackgroundDrawable(originalBgDrawable);
+        }
     }
 }

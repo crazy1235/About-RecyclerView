@@ -4,6 +4,7 @@
     android:id="@+id/activity_list_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#96c996"
     tools:context="jacksen.recyclerviewdemo.list.ListLayoutActivity">
 
     <android.support.v7.widget.RecyclerView

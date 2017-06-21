@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import jacksen.recyclerviewdemo.R;
@@ -37,12 +38,27 @@ public class ListItemDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDraw(c, parent, state);
-        if (orientation == LinearLayoutManager.HORIZONTAL) {
+        Log.d("ListItemDecoration", "onDraw -- " + state.toString());
+    }
+
+
+    @Override
+    public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
+        super.onDrawOver(c, parent, state);
+
+        Log.d("ListItemDecoration", "onDrawOver -- ");
+
+        /*if (orientation == LinearLayoutManager.HORIZONTAL) {
             onDrawHorizontal(c, parent);
         } else {
             onDrawVertical(c, parent);
-        }
+        }*/
+    }
 
+    @Override
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+        super.getItemOffsets(outRect, view, parent, state);
+        Log.d("ListItemDecoration", "getItemOffsets -- ");
     }
 
     /**
@@ -88,14 +104,4 @@ public class ListItemDecoration extends RecyclerView.ItemDecoration {
         }
     }
 
-
-    @Override
-    public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
-        super.onDrawOver(c, parent, state);
-    }
-
-    @Override
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        super.getItemOffsets(outRect, view, parent, state);
-    }
 }

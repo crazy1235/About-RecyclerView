@@ -1,6 +1,7 @@
 package jacksen.recyclerviewdemo.empty;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +23,8 @@ import jacksen.recyclerviewdemo.list.ListLayoutAdapter;
  */
 public class EmptyViewActivity extends AppCompatActivity {
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+
     private View emptyView;
 
     private RecyclerViewPlus recyclerView;
@@ -34,6 +37,8 @@ public class EmptyViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empty_view);
+
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 
         recyclerView = (RecyclerViewPlus) findViewById(R.id.recycler_view);
 
